@@ -1,5 +1,5 @@
-import React from "react";
-import List from "./List";
+import React, { lazy,Suspense } from "react";
+const List=lazy(()=>import("./List"));
 
 class Employee extends React.Component{
 constructor(){
@@ -74,8 +74,11 @@ render(){
                     <br></br>
                     <br></br>
                     <button onClick={(e)=>this.saveData(e)}>Register</button>
-                     <List employees={this.state.employees}/>
+                     
                 </form>
+                <Suspense fallback={<div>loading......</div>}>
+                <List employees={this.state.employees}/>
+                </Suspense>
             </div>
             </center>
         </div>
